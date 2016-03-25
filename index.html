@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="sounder">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- Bootstrap core CSS -->
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="assets/css/main.css" rel="stylesheet">
+
+<!-- Fonts from Google Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+
+
+    <link rel="stylesheet" href="jumbotron.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="style.css" charset="utf-8">
+  </head>
+
+  <body ng-controller="mainController">
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><b>Sound Cloud API</b></a>
+        </div>
+      </div>
+    </div><!-- /navbar -->
+    <div id="headerwrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Get your music<br/>
+              from SoundCloud Users</h2>
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <input class="form-control" type="text" ng-model="searchText" placeholder="Username...">
+                </div>
+                <button ng-click="getUser()" class="btn btn-warning btn-lg" id="find-music">Find Music</button>
+              </form>
+          </div><!-- /col-lg-6 -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+</div><!-- /headerwrap -->
+      <div class="container">
+    <div class="jumbotron">
+      <div class="player" ng-bind-html="player_html">
+        <h1>Play Music</h1>
+        {{player_html}}
+      </div>
+    </div>
+
+
+
+      <div class="row marketing">
+        <div ng-repeat="song in userData" class="col-lg-12 track-list" id="tracks">
+
+            <img id="music-play" src="http://www.clipartbest.com/cliparts/niE/Xnr/niEXnr6iA.jpeg" ng-click="play(song.permalink_url)" ng-if="!song.artwork_url" />
+            <img ng-src="{{song.artwork_url}}" ng-click="play(song.permalink_url)" ng-if="song.artwork_url">
+            <p>
+              {{song.title}}
+            </p>
+          </div>
+      </div>
+   
+    <footer class="footer">
+      <p>&copy; CJ Wilson 2015</p>
+    </footer>
+
+
+</div> 
+
+  <script src="http://connect.soundcloud.com/sdk.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="app.js" charset="utf-8"></script>
+  <script src="mainController.js" charset="utf-8"></script>
+  <script src="soundService.js" charset="utf-8"></script>
+
+  </body>
+</html>
